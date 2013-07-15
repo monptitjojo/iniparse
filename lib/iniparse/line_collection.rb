@@ -19,7 +19,7 @@ module IniParse
 
     # Retrive a value identified by +key+.
     def [](key)
-      has_key?(key) ? @lines[ @indicies[key] ] : nil
+      has_key?(key.downcase) ? @lines[ @indicies[key.downcase] ] : nil
     end
 
     # Set a +value+ identified by +key+.
@@ -28,7 +28,7 @@ module IniParse
     # with the new one, with the new value taking the position of the old.
     #
     def []=(key, value)
-      key = key.to_s
+      key = key.to_s.downcase
 
       if has_key?(key)
         @lines[ @indicies[key] ] = value
@@ -66,6 +66,8 @@ module IniParse
 
     # Removes the value identified by +key+.
     def delete(key)
+      key=key.to_s.downcase
+      
       unless (idx = @indicies[key]).nil?
         @indicies.delete(key)
         @indicies.each { |k,v| @indicies[k] = v -= 1 if v > idx }
