@@ -29,7 +29,7 @@ module IniParse
     # Returns nil if there is no Section with the given key.
     #
     def [](key)
-      @lines[key.to_s]
+      @lines[key.to_s.downcase]
     end
 
     # Returns this document as a string suitable for saving to a file.
@@ -39,7 +39,7 @@ module IniParse
 
     # Returns true if a section with the given +key+ exists in this document.
     def has_section?(key)
-      @lines.has_key?(key.to_s)
+      @lines.has_key?(key.to_s.downcase)
     end
 
     # Saves a copy of this Document to disk.
