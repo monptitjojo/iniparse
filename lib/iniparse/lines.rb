@@ -76,7 +76,7 @@ module IniParse
       #
       def initialize(key, opts = {})
         super(opts)
-        @key   = key.to_s
+        @key   = key.to_s.downcase
         @lines = IniParse::OptionCollection.new
       end
 
@@ -214,7 +214,7 @@ module IniParse
       #
       def initialize(key, value, opts = {})
         super(opts)
-        @key, @value = key.to_s, value
+        @key, @value = key.to_s.downcase, value
       end
 
       def self.parse(line, opts)
